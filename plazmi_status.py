@@ -15,16 +15,18 @@ import subprocess
 import sys
 
 
-def read_status(mode='pulse', cli='plazmi'):
+def read_status(mode='pulse', cli='plazmi', *, timeout=40):
     if mode not in ('pulse', 'digest'):
         raise ValueError('Only pulse and digest are supported')
     result = subprocess.run([cli, '--json', mode], capture_output=True,
-                            text=True, timeout=40, check=False)
+                            text=True, timeout=timeout, check=False)
     if result.returncode:
         # Preserve the CLI's domain failure versus local/configuration failure.
         return result.returncode, {'ok': False, 'exit_code': result.returncode,
                                    'mode': mode, 'error': 'plazmi-cli failed; inspect it locally'}
     value = json.loads(result.stdout)
+    if not isinstance(value, dict):
+        raise ValueError('Plazmi status must be a JSON object')
     if value.get('ok') is False:
         return 1, value
     return 0, value
