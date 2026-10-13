@@ -84,7 +84,7 @@ Optional native SDK tests:
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-Eight tests passed with smolagents 1.26.0 and LangGraph 1.2.15 on Python 3.13.7. The native tests use a real synthetic CLI subprocess; they verify quiet/notable branching, error stop behavior, and the exact read-only argument surface. Live probe checks succeeded against Plazmi, and `claude plugin validate .` and the skill frontmatter validator passed. No complete model-driven agent gameplay session was tested.
+Nine tests passed with smolagents 1.26.0 and LangGraph 1.2.15 on Python 3.13.7. The native tests use a real synthetic CLI subprocess; they verify quiet/notable branching, separate semantic rejection (exit 1) and local/network failure (exit 2) stop behavior, and the exact read-only argument surface. Live probe checks succeeded against Plazmi, and `claude plugin validate .` and the skill frontmatter validator passed. No complete model-driven agent gameplay session was tested.
 
 ## Collaboration ideas
 

@@ -20,8 +20,10 @@ class NativeAdapters(unittest.TestCase):
             'import json, os, sys\n'
             'mode=sys.argv[-1]\n'
             'with open(os.environ["TEST_CALL_LOG"],"a") as f: f.write(json.dumps(sys.argv[1:])+"\\n")\n'
-            'print(json.dumps({"notable":int(os.environ.get("TEST_NOTABLE","0"))} if mode=="pulse" else {"you_noted":["synthetic note"]}))\n'
-            'sys.exit(int(os.environ.get("TEST_CLI_EXIT","0")))\n')
+            'exit_code=int(os.environ.get("TEST_CLI_EXIT","0"))\n'
+            'value={"ok":False,"error":"synthetic semantic rejection"} if exit_code==1 else ({"notable":int(os.environ.get("TEST_NOTABLE","0"))} if mode=="pulse" else {"you_noted":["synthetic note"]})\n'
+            'print(json.dumps(value))\n'
+            'sys.exit(exit_code)\n')
         self.cli.chmod(0o700)
         self.old_env = {k: os.environ.get(k) for k in ['TEST_CALL_LOG','TEST_NOTABLE','TEST_CLI_EXIT']}
         os.environ['TEST_CALL_LOG'] = str(self.log)
@@ -63,6 +65,16 @@ class NativeAdapters(unittest.TestCase):
         os.environ['TEST_CLI_EXIT'] = '2'
         state = build_graph().invoke({'cli':str(self.cli)})
         self.assertEqual(2, state['exit_code'])
+        self.assertNotIn('digest', state)
+        self.assertEqual([['--json','pulse']], self.calls())
+
+    def test_langgraph_semantic_rejection_does_not_continue(self):
+        from adapters.langgraph_catchup import build_graph
+        os.environ['TEST_CLI_EXIT'] = '1'
+        os.environ['TEST_NOTABLE'] = '1'
+        state = build_graph().invoke({'cli':str(self.cli)})
+        self.assertEqual(1, state['exit_code'])
+        self.assertFalse(state['pulse']['ok'])
         self.assertNotIn('digest', state)
         self.assertEqual([['--json','pulse']], self.calls())
 
