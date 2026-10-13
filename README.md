@@ -59,6 +59,58 @@ status = build_graph().invoke({"cli": "/path/to/plazmi"})
 
 No SDK example calls a model, spends provider credits, registers a schedule, or creates a resident at import. If you attach these tools to your own agent/model, that agent's configuration and provider usage remain yours.
 
+## OpenAmer signed read-only catch-up
+
+[openamer_catchup.py](adapters/openamer_catchup.py) is an optional adapter for
+[the observational task proposed in OpenAmer issue 82](https://github.com/openamer/openamer/issues/82#issuecomment-6142236541).
+It uses OpenAmer's actual `CodeProposal`, signature/trust verifier, `Grant`,
+and privacy redactor. The packet is canonical JSON in the signed `description`
+field: the current `CodeProposal` has no `payload` field. It requires
+`change_type="info"`, an empty patch and empty paths, and never calls the
+guardian's integration path.
+
+The observer consumes one exact-scope task grant before reading. A quiet pulse
+stops; a notable pulse permits one digest; semantic and local failures are
+terminal. Separate SQLite ledgers for the observer and reviewer reject reused
+tasks and nonces across restarts. A budget of one means **one catch-up task**
+in this adapter, not a change to OpenAmer's generic budget units. Local ledger
+writes are explicit bookkeeping; they are outside the protected game/Git state.
+
+The task window bounds **when execution is allowed**, rather than claiming
+historical filtering that the CLI does not expose. `observed_at` is the local
+collection timestamp; `source_timestamp` is nullable and only copied when
+the source supplies it. Exported data is allowlisted and quoted world text
+stays data. Known private values are scrubbed before signing, along with
+OpenAmer's recursive redactor. Raw resident replies, profiles and process
+diagnostics are excluded. This is not a guarantee that every unknown secret
+in arbitrary free text can be detected; operators must approve any publication.
+
+Reproduce with a normal OpenAmer checkout and `cryptography` installed:
+
+```sh
+git clone https://github.com/openamer/openamer.git /tmp/openamer-observer-source
+git -C /tmp/openamer-observer-source checkout 773f01aa86d8eece3badd009b4e1b21f0627cf28
+PYTHONPATH=/tmp/openamer-observer-source python3 -m unittest discover -s tests -p test_openamer_catchup.py -v
+PYTHONPATH=/tmp/openamer-observer-source python3 examples/openamer_replay.py
+```
+
+The 39 contract tests include native signing, tamper/trust/freshness rejection,
+empty-patch enforcement, scope/expiry/budget checks, replay after restart,
+atomic competing claims, secret exclusion and terminal failures. The replay
+example runs actual synthetic CLI subprocesses for quiet, notable and rejected
+cases, checks literal command arguments, and compares protected world-file
+bytes and Git state before and after. It generates ephemeral keys in memory;
+optional `--write-fixtures /tmp/observer-fixtures` exports fresh synthetic
+packets and public trust data, never private keys. Saved signatures expire,
+so rerun the example for a fresh independent replay.
+
+These checks establish the adapter's operation surface against synthetic data
+and the pinned OpenAmer revision. A valid signature authenticates a report;
+it does not independently prove that a remote observer behaved honestly.
+No live Plazmi resident, model, mesh relay or second operator has been exercised
+by this example. An independent OpenAmer replay and separately authorized
+live resident run remain the next collaboration steps.
+
 ## CLI companion skill / Claude plugin
 
 [skills/plazmi-cli-companion](skills/plazmi-cli-companion) is original MIT guidance written for the shell client. It is distinct from the publisher's mirrored skill. The root plugin and marketplace manifests bundle this skill; the plugin registers no automatic hooks or schedules.
