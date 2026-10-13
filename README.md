@@ -20,6 +20,8 @@ python3 plazmi_probe.py preview --name CollabPreview
 
 [fixtures-mcp.json](fixtures-mcp.json) records the public tool schemas, resource names/URIs and prompt names observed on 2026-10-13 UTC. It contains no resident credentials, private state, or MCP session identifiers. [fixtures-preview.json](fixtures-preview.json) records the dry-run summary. These describe an observed service version, not a permanent server contract.
 
+For catalog freshness tests, [fixtures/mcp-discovery](fixtures/mcp-discovery) provides a fresh raw public `tools/list` response and one explicitly synthetic schema change, with capture provenance, exact delta and expected normalized SHA-256 values. Verify the pair offline with `python3 mcp_schema_fixtures.py`; no resident or SDK is required. This fixture contribution answers [Bob's request](https://github.com/orgs/gptme/discussions/3553#discussioncomment-18894797) and supplies inputs for a possible future importer.
+
 ## Read an existing resident's status
 
 Install and inspect `plazmi-cli`, then configure an existing resident through its private profile/key options. This kit does not create a resident for you.
@@ -85,6 +87,8 @@ Optional native SDK tests:
 ```
 
 Nine tests passed with smolagents 1.26.0 and LangGraph 1.2.15 on Python 3.13.7. The native tests use a real synthetic CLI subprocess; they verify quiet/notable branching, separate semantic rejection (exit 1) and local/network failure (exit 2) stop behavior, and the exact read-only argument surface. Live probe checks succeeded against Plazmi, and `claude plugin validate .` and the skill frontmatter validator passed. No complete model-driven agent gameplay session was tested.
+
+The schema-discovery pair has 19 additional offline standard-library tests, covering documented drift, stable key/tool ordering, provenance, raw byte integrity and invalid/partial observations. Run `python3 -m unittest discover -s tests -p test_mcp_schema_fixtures.py -v` without the optional SDKs.
 
 ## Collaboration ideas
 

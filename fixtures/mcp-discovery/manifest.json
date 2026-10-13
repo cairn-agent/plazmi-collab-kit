@@ -1,0 +1,162 @@
+{
+  "format_version": 1,
+  "capture": {
+    "endpoint": "https://plazmi.gg/mcp",
+    "observations": [
+      {
+        "method": "initialize",
+        "observed_at": "2026-10-13T06:36:15.632056+00:00",
+        "requested_at": "2026-10-13T06:36:15.520868+00:00",
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "request_file": "initialize-public.request.json",
+        "response_file": "initialize-public.response.json",
+        "transport_body_bytes": 1003,
+        "response_sha256": "50d69399c11d212e385b33db5c24945090507c032f6b293d7458556f40928c06"
+      },
+      {
+        "method": "tools/list",
+        "observed_at": "2026-10-13T06:36:15.764120+00:00",
+        "requested_at": "2026-10-13T06:36:15.632255+00:00",
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "request_file": "tools-list-public.request.json",
+        "response_file": "tools-list-public.response.json",
+        "transport_body_bytes": 27694,
+        "response_sha256": "2e1d8ca3d06b042481ec7366e66bca67853068f5514a55aa22c7f6ca38396166"
+      }
+    ],
+    "authentication_sent": false,
+    "game_tool_methods_sent": []
+  },
+  "provenance": {
+    "observed_at": "2026-10-13T06:36:15.764120+00:00",
+    "source_endpoint": "https://plazmi.gg/mcp",
+    "protocol_version": "2025-03-26",
+    "server_info": {
+      "name": "plazmi",
+      "title": "Plazmi",
+      "version": "0.1.0"
+    },
+    "discovery_context": {
+      "authentication": "none",
+      "resident_identity": null,
+      "evidence_kind": "wire_discovery",
+      "execution_authorization": "unknown"
+    }
+  },
+  "normalization": {
+    "algorithm": "sha256",
+    "encoding": "UTF-8",
+    "json": "Python json.dumps(sort_keys=True, ensure_ascii=False, separators=(comma,colon), allow_nan=False)",
+    "selected_fields": [
+      "name",
+      "inputSchema",
+      "outputSchema if present"
+    ],
+    "tool_order": "lexicographic by case-sensitive name",
+    "schema_arrays": "preserved as declared",
+    "excluded_fields": [
+      "JSON-RPC id/envelope",
+      "tool-level description/title/annotations/_meta",
+      "capture time",
+      "server/protocol version",
+      "discovery context"
+    ],
+    "semantic_equivalence_claim": false
+  },
+  "synthetic_change": {
+    "synthetic": true,
+    "op": "replace",
+    "tool": "move_in",
+    "response_pointer": "/result/tools/0/inputSchema/properties/name/maxLength",
+    "schema_pointer": "/inputSchema/properties/name/maxLength",
+    "before": 24,
+    "after": 25,
+    "live_server_change_claimed": false
+  },
+  "expected": {
+    "public": {
+      "catalog": "d6dcdfa7450b99c900d6f2ae18ba532d31d21c13f4a514ed98bdeb84041a4db9",
+      "tools": {
+        "ask_human": "98f8d043cf0339454cc8574a291ce5a723157892fa6393a6b626db7cd7fa9b8c",
+        "away_note": "4b9bd6b6f1a612aa0e1f4c8ea102016c1fe9d04fd6fa5bf130688ea771247b36",
+        "build": "6bc1f8e6b8000eb797a5417c20231694d44adf29ded82e62b7179acd4afc6db6",
+        "catalog_search": "747695870b69fd726a5d7b453cbe9990b13929989981774586b7a051bc97a60b",
+        "daily_visit": "9dfcc1e51a3361e8f11b9a0fa74f1181ec6d8c9713ce40eba2d7913ef1f6e6dd",
+        "dance": "8c65505e8b8faf06471c3a1faf44ee19d8fa25f8d9ff8f8507a33ca7488b9514",
+        "digest": "ec1a3241f8b55c376148a29148db459dd4fee9f6448f57e80d65951905522797",
+        "do": "8f338cafb1f23b1fdbcc017b6abe58f257351c371df5ea37d91c027cc96d5169",
+        "draw": "12deb093c344d6a1541ea15f8d54087b5a4d3a28f0a30c9368f82260c701b3ff",
+        "feedback": "f3198193366650794c2b8378ab957b4bf2e547e45047ff31b090dfd3c16b85b9",
+        "gifts": "c940b0d2322ccfe8801d86eb3b4ac4c235465efd2effbccb20bda43f7a85fea9",
+        "give": "117636a5099b6207e2e751b95a10b6e058f6b7af0f52446f3fbc788d02eafeb8",
+        "go": "d8cf1c2baed30263343a93bf738a79f74674c81d632d61b335b2f8463f3c9571",
+        "inbox": "f1eb498b9fd153461d54a81b4d77e3e43bf764b861f0ebe01629bdf432ebd678",
+        "landing": "8b86e32c18088e8e992bd4a6806bb070d9f2479e8c18d08578f22626e6a014b1",
+        "letter": "9f33edab64842f7df930b835483ed0a2edafcae8ba01c7d3045a17dc3d87985f",
+        "look": "a935f87324a031f9b0d77d016e8775f110f31b7d68a82afc3f9f17e73de9ae2a",
+        "make": "6810d812776005c5c0fbd927c6d6e8e3126a57dd950b0356617cc079e86406ef",
+        "move_in": "2930d91f6ea47e21efa27672ead90f9792095341d09b09e07126256d17d8940d",
+        "my_house": "ad9aa0e7788b4834c2dbb3edaf9748466fcdbd2e7986c408467ce95bcd7eec74",
+        "news": "34c826e92853ac04d133f21e3f37ad342691bd4cb83d2a3759be9eda63405449",
+        "playa": "9be106de9e17c2bcd4acde57dbef807f22f984fcf2fa92266381287045b1e913",
+        "plots": "8054f88a7c69e2c1f2fe71ce258d4fc2a2cb901804f5819ab83ebe4883d57332",
+        "postcard": "9e2d76892a0e62d233e93b0dd8c56c46cbaa2e5cb0dbe22a0dd52e362d05468f",
+        "pulse": "c940b0d2322ccfe8801d86eb3b4ac4c235465efd2effbccb20bda43f7a85fea9",
+        "reply": "0ef6e6ff3b0cad3c4d00d19831e90e9f3bbea390782683d8d19053f84c9d278c",
+        "say": "1c4c740287b1dd46b9518700947779d06c841967e6af66fd52599855dd97d95a",
+        "share_dance": "d6b6b3b8ffe005162e201306aeba8dd600f73c27c084ba66382bfd5efec1d8bd",
+        "sign_in": "7c2da2b2eb968d9a1a857e4c7b1b95425714407fdf69234d8405f2c0ff146d62",
+        "unwish": "7a6f8a0ca4053b08c890fe2c3b9d3f0f072348f253450d11f7622fdaef0c9819",
+        "visit": "a3c788e61b4bb5edf62ae663342c6febd1c94d7e0c1f02bf8bc8cf15a0ca3486",
+        "wish": "025f5477357f5f6a7d825d708912b8854cb9fc70c43fe40ecf39f0038e780cd8",
+        "wishlist": "c940b0d2322ccfe8801d86eb3b4ac4c235465efd2effbccb20bda43f7a85fea9"
+      }
+    },
+    "synthetic": {
+      "catalog": "0f0c43d9262f06d785b219745c29e3aee293e8e3f68468fc2ca7b92b1a8b6117",
+      "tools": {
+        "ask_human": "98f8d043cf0339454cc8574a291ce5a723157892fa6393a6b626db7cd7fa9b8c",
+        "away_note": "4b9bd6b6f1a612aa0e1f4c8ea102016c1fe9d04fd6fa5bf130688ea771247b36",
+        "build": "6bc1f8e6b8000eb797a5417c20231694d44adf29ded82e62b7179acd4afc6db6",
+        "catalog_search": "747695870b69fd726a5d7b453cbe9990b13929989981774586b7a051bc97a60b",
+        "daily_visit": "9dfcc1e51a3361e8f11b9a0fa74f1181ec6d8c9713ce40eba2d7913ef1f6e6dd",
+        "dance": "8c65505e8b8faf06471c3a1faf44ee19d8fa25f8d9ff8f8507a33ca7488b9514",
+        "digest": "ec1a3241f8b55c376148a29148db459dd4fee9f6448f57e80d65951905522797",
+        "do": "8f338cafb1f23b1fdbcc017b6abe58f257351c371df5ea37d91c027cc96d5169",
+        "draw": "12deb093c344d6a1541ea15f8d54087b5a4d3a28f0a30c9368f82260c701b3ff",
+        "feedback": "f3198193366650794c2b8378ab957b4bf2e547e45047ff31b090dfd3c16b85b9",
+        "gifts": "c940b0d2322ccfe8801d86eb3b4ac4c235465efd2effbccb20bda43f7a85fea9",
+        "give": "117636a5099b6207e2e751b95a10b6e058f6b7af0f52446f3fbc788d02eafeb8",
+        "go": "d8cf1c2baed30263343a93bf738a79f74674c81d632d61b335b2f8463f3c9571",
+        "inbox": "f1eb498b9fd153461d54a81b4d77e3e43bf764b861f0ebe01629bdf432ebd678",
+        "landing": "8b86e32c18088e8e992bd4a6806bb070d9f2479e8c18d08578f22626e6a014b1",
+        "letter": "9f33edab64842f7df930b835483ed0a2edafcae8ba01c7d3045a17dc3d87985f",
+        "look": "a935f87324a031f9b0d77d016e8775f110f31b7d68a82afc3f9f17e73de9ae2a",
+        "make": "6810d812776005c5c0fbd927c6d6e8e3126a57dd950b0356617cc079e86406ef",
+        "move_in": "43973ce7175274e6415d80e310c1a83c3df74de7e0d0c197f81c38314cd969b7",
+        "my_house": "ad9aa0e7788b4834c2dbb3edaf9748466fcdbd2e7986c408467ce95bcd7eec74",
+        "news": "34c826e92853ac04d133f21e3f37ad342691bd4cb83d2a3759be9eda63405449",
+        "playa": "9be106de9e17c2bcd4acde57dbef807f22f984fcf2fa92266381287045b1e913",
+        "plots": "8054f88a7c69e2c1f2fe71ce258d4fc2a2cb901804f5819ab83ebe4883d57332",
+        "postcard": "9e2d76892a0e62d233e93b0dd8c56c46cbaa2e5cb0dbe22a0dd52e362d05468f",
+        "pulse": "c940b0d2322ccfe8801d86eb3b4ac4c235465efd2effbccb20bda43f7a85fea9",
+        "reply": "0ef6e6ff3b0cad3c4d00d19831e90e9f3bbea390782683d8d19053f84c9d278c",
+        "say": "1c4c740287b1dd46b9518700947779d06c841967e6af66fd52599855dd97d95a",
+        "share_dance": "d6b6b3b8ffe005162e201306aeba8dd600f73c27c084ba66382bfd5efec1d8bd",
+        "sign_in": "7c2da2b2eb968d9a1a857e4c7b1b95425714407fdf69234d8405f2c0ff146d62",
+        "unwish": "7a6f8a0ca4053b08c890fe2c3b9d3f0f072348f253450d11f7622fdaef0c9819",
+        "visit": "a3c788e61b4bb5edf62ae663342c6febd1c94d7e0c1f02bf8bc8cf15a0ca3486",
+        "wish": "025f5477357f5f6a7d825d708912b8854cb9fc70c43fe40ecf39f0038e780cd8",
+        "wishlist": "c940b0d2322ccfe8801d86eb3b4ac4c235465efd2effbccb20bda43f7a85fea9"
+      }
+    }
+  },
+  "limits": [
+    "Complete unpaginated snapshot; not a network importer or execution authorization",
+    "No tools/call or gameplay operation was sent",
+    "Tool annotations/prose do not establish execution permissions",
+    "Hashes identify selected syntactic schemas, not equivalent JSON Schema semantics or observed reliability"
+  ]
+}
