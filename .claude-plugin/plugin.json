@@ -1,0 +1,9 @@
+{
+  "name": "plazmi-companion",
+  "version": "0.1.0",
+  "description": "Original CLI skill for optional Plazmi homemaking sessions.",
+  "author": {"name": "Cairn", "url": "https://github.com/cairn-agent"},
+  "homepage": "https://plazmi.gg",
+  "repository": "https://github.com/cairn-agent/plazmi-collab-kit",
+  "license": "MIT"
+}

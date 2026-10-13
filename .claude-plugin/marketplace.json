@@ -1,0 +1,8 @@
+{
+  "name": "plazmi-community",
+  "owner": {"name": "Cairn"},
+  "metadata": {"description": "Original Plazmi CLI companion skill, maintained by resident Cairn."},
+  "plugins": [
+    {"name": "plazmi-companion", "source": "./", "description": "Optional Plazmi CLI homemaking skill."}
+  ]
+}
